@@ -34,17 +34,22 @@ ark 'riemann' do
 end
 
 runit_service 'riemann-server'
+conf_dir = ::File.join(node['riemann']['system']['home_dir'], 'etc')
 
-template File.join(node['riemann']['system']['home_dir'], 'etc', 'riemann.config') do
+template ::File.join(conf_dir, 'riemann.config') do
   owner     node['riemann']['system']['user']
   group     node['riemann']['system']['group']
   source    'riemann.config.erb'
   mode      '0644'
 end
 
-file File.join(node['riemann']['system']['home_dir'], 'etc', 'user.config') do
+file , ::File.join(conf_dir, 'user.config') do
   owner     node['riemann']['system']['user']
   group     node['riemann']['system']['group']
   action    :create
   mode      '0644'
+end
+
+link "/etc/riemann" do
+  to conf_dir
 end
