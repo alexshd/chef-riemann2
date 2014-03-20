@@ -16,6 +16,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe 'riemann::riemann'
-include_recipe 'riemann::helper'
-include_recipe 'riemann::riemann-dash'
