@@ -7,6 +7,8 @@ else
   Chef::Application.fatal!('Platform Not Supported')
 end
 
+_conf_dir = ::File.join(node['riemann']['system']['home_dir'], 'etc')
+
 include_recipe 'runit'
 include_recipe 'java'
 include_recipe 'ark'
@@ -33,24 +35,23 @@ ark 'riemann' do
   action    :install
 end
 
-runit_service 'riemann-server'
-conf_dir = ::File.join(node['riemann']['system']['home_dir'], 'etc')
+link '/etc/riemann' do
+  to        _conf_dir
+end
 
-template ::File.join(conf_dir, 'riemann.config') do
+template ::File.join(_conf_dir, 'riemann.config') do
   owner     node['riemann']['system']['user']
   group     node['riemann']['system']['group']
   source    'riemann.config.erb'
   mode      '0644'
-  notifies :hup, 'runit_service[riemann]'
+  notifies  :hup, 'runit_service[riemann-server]'
 end
 
-file , ::File.join(conf_dir, 'user.config') do
+runit_service 'riemann-server'
+
+file node['riemann']['config']['userfile'] do
   owner     node['riemann']['system']['user']
   group     node['riemann']['system']['group']
   action    :create_if_missing
   mode      '0644'
-end
-
-link "/etc/riemann" do
-  to conf_dir
 end
