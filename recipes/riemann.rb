@@ -41,12 +41,13 @@ template ::File.join(conf_dir, 'riemann.config') do
   group     node['riemann']['system']['group']
   source    'riemann.config.erb'
   mode      '0644'
+  notifies :hup, 'runit_service[riemann]'
 end
 
 file , ::File.join(conf_dir, 'user.config') do
   owner     node['riemann']['system']['user']
   group     node['riemann']['system']['group']
-  action    :create
+  action    :create_if_missing
   mode      '0644'
 end
 
