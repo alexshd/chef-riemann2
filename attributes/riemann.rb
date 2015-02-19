@@ -1,5 +1,5 @@
-default['riemann']['download']['url']       = 'http://aphyr.com/riemann/riemann-0.2.4.tar.bz2'
-default['riemann']['download']['checksum']  = 'b8776b5175708d8f41305e3db20d159b64db0fdb4440bb2f4dbe2fa8be7c3121'
+default['riemann']['download']['url']       = 'http://aphyr.com/riemann/riemann-0.2.8.tar.bz2'
+default['riemann']['download']['checksum']  = 'f5bb666acb878e144471f8c6d7f622193840d127aea96924fd8575e1fb6c57dc'
 default['riemann']['download']['version']   = '0.2.4'
 
 default['riemann']['config']['bind']        =   '0.0.0.0'
