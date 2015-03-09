@@ -10,3 +10,8 @@ default['riemann']['config']['userfile']    =   '/usr/local/riemann/etc/user.con
 default['riemann']['system']['user']        =   'riemann'
 default['riemann']['system']['group']       =   'riemann'
 default['riemann']['system']['home_dir']    =   '/usr/local/riemann'
+
+default['java']['jdk_version'] = '7'
+default['java']['install_flavor'] = 'oracle'
+default['java']['oracle']['accept_oracle_download_terms'] = true
+
