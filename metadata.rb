@@ -12,6 +12,7 @@ supports 'centos'
 
 depends 'java'
 depends 'apt'
+depends 'yum'
 depends 'ark'
 depends 'runit'
 depends 'build-essential'

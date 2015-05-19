@@ -3,18 +3,14 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
 
 platforms:
-  - name: ubuntu-13.10
-  - name: debian-7.1.0
-    driver_config:
-      box: opscode_debian-7.1.0_provisionerless
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_debian-7.1.0_provisionerless.box
-  - name: centos-6.4
+  - name: opscode-ubuntu-14.04
+  - name: opscode-centos-6.6
 
 suites:
   - name: default
     run_list:
-      - recipe[riemann::riemann]
+      - recipe[riemann::server]
     attributes:
