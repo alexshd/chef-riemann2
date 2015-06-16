@@ -5,3 +5,4 @@ gem_package 'riemann-tools' do
   action :install
   gem_binary 'gem'
 end
+

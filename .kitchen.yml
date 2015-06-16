@@ -16,6 +16,6 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[riemann::server]
-      - recipe[riemann::riemann-dash]
+      - recipe[riemann2::server]
+      - recipe[riemann2::riemann-dash]
     attributes:

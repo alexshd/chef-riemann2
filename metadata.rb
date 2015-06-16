@@ -1,4 +1,4 @@
-name             'riemann'
+name             'riemann2'
 maintainer       'Fewbytes.'
 maintainer_email 'alex@fewbytes.com'
 license          'Apache 2.0'
