@@ -1,40 +1,49 @@
 # Description
 
-Install and configure Riemann Server, Riemann Dashboard, Riemann Tools.
+Installs/Configures riemann
 
 # Requirements
-## Platform
-Tested with `test-kitchen` on Ubuntu 13.10, Debian 7.1.0
-CentOS 6.4 working without `riemann-dash`
 
-# Usage
-### Riemann Server
-`include_recipe 'riemann::riemann'`
-Will install `riemann` server with default java from `java` cookbook
-The configuration file generated from template with `(include node['riemann']['config']['userfile'])` for other configuration. 
+## Platform:
 
-### Riemann Dash
-`include_recipe 'riemann::riemann-dash'`
+* Ubuntu
+* Debian
+* Centos
+
+## Cookbooks:
+
+* java
+* apt
+* yum
+* ark
+* runit
+* build-essential
 
 # Attributes
-```ruby
-default['riemann']['download']['url'] = 'http://aphyr.com/riemann/riemann-0.2.4.tar.bz2'
-default['riemann']['download']['checksum'] = 'b8776b5175708d8f41305e3db20d159b64db0fdb4440bb2f4dbe2fa8be7c3121'
-default['riemann']['download']['version'] = '0.2.4'
 
-default['riemann']['config']['bind'] = '0.0.0.0'
-default['riemann']['config']['port'] = '5555'
-default['riemann']['config']['ws-port'] = '5556'
-default['riemann']['config']['userfile'] = "#{riemann['system']['home_dir']}/etc/user.config"
-
-default['riemann']['system']['user'] = 'riemann'
-default['riemann']['system']['group'] = 'riemann'
-default['riemann']['system']['home_dir'] = '/usr/local/riemann'
-```
+* `node['riemann']['download']['url']` -  Defaults to `http://aphyr.com/riemann/`.
+* `node['riemann']['download']['checksum']` -  Defaults to `8363e936d5c31d879a7e725e6c8fe41f1a1627b90530a7fb7968aaf4b448ff83`.
+* `node['riemann']['download']['version']` -  Defaults to `0.2.9`.
+* `node['riemann']['config']['bind']` -  Defaults to `0.0.0.0`.
+* `node['riemann']['config']['port']` -  Defaults to `5555`.
+* `node['riemann']['config']['ws-port']` -  Defaults to `5556`.
+* `node['riemann']['config']['userfile']` -  Defaults to `/usr/local/riemann/etc/user.config`.
+* `node['riemann']['system']['user']` -  Defaults to `riemann`.
+* `node['riemann']['system']['group']` -  Defaults to `riemann`.
+* `node['riemann']['system']['home_dir']` -  Defaults to `/usr/local/riemann`.
+* `node['java']['jdk_version']` -  Defaults to `7`.
+* `node['java']['install_flavor']` -  Defaults to `oracle`.
+* `node['java']['oracle']['accept_oracle_download_terms']` -  Defaults to `true`.
 
 # Recipes
-`riemann::riemann` - installs the riemann server
 
-# Author
+* riemann2::dash
+* riemann2::default
+* riemann2::server
+* riemann2::tools
 
-Author:: Fewbytes. (<alex@fewbytes.com>)
+# License and Maintainer
+
+Maintainer:: Fewbytes. (<alex@fewbytes.com>)
+
+License:: Apache 2.0
