@@ -12,10 +12,10 @@ directory '/opt/riemann2/dash' do
   owner 'root'
   group 'root'
   mode '0755'
-  path 'name'
   recursive true
   action :create
 end
+
 
 template '/opt/riemann2/dash/config.rb' do
   source 'config.rb.erb'
