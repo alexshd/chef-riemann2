@@ -6,9 +6,9 @@ Installs/Configures riemann
 
 ## Platform:
 
-* Ubuntu
-* Debian
-* Centos
+* ubuntu
+* debian
+* centos
 
 ## Cookbooks:
 
@@ -22,8 +22,8 @@ Installs/Configures riemann
 # Attributes
 
 * `node['riemann']['download']['url']` -  Defaults to `http://aphyr.com/riemann/`.
-* `node['riemann']['download']['checksum']` -  Defaults to `8363e936d5c31d879a7e725e6c8fe41f1a1627b90530a7fb7968aaf4b448ff83`.
-* `node['riemann']['download']['version']` -  Defaults to `0.2.9`.
+* `node['riemann']['download']['checksum']` -  Defaults to `ec697519e80781dc478983de04204760f2790da1715acfd233b35da071be5455`.
+* `node['riemann']['download']['version']` -  Defaults to `0.2.10`.
 * `node['riemann']['config']['bind']` -  Defaults to `0.0.0.0`.
 * `node['riemann']['config']['port']` -  Defaults to `5555`.
 * `node['riemann']['config']['ws-port']` -  Defaults to `5556`.
@@ -31,7 +31,7 @@ Installs/Configures riemann
 * `node['riemann']['system']['user']` -  Defaults to `riemann`.
 * `node['riemann']['system']['group']` -  Defaults to `riemann`.
 * `node['riemann']['system']['home_dir']` -  Defaults to `/usr/local/riemann`.
-* `node['java']['jdk_version']` -  Defaults to `7`.
+* `node['java']['jdk_version']` -  Defaults to `8`.
 * `node['java']['install_flavor']` -  Defaults to `oracle`.
 * `node['java']['oracle']['accept_oracle_download_terms']` -  Defaults to `true`.
 
@@ -42,8 +42,19 @@ Installs/Configures riemann
 * riemann2::server
 * riemann2::tools
 
+# Resources
+
+* [riemann2_riemann_check](#riemann2_riemann_check)
+
+## riemann2_riemann_check
+
+### Actions
+
+- [:nothing]:  Default action.
+- nothing:
+
 # License and Maintainer
 
-Maintainer:: Fewbytes. (<alex@fewbytes.com>)
+Maintainer:: Alex Shadrin. (<alex@shdlabs.com>)
 
 License:: Apache 2.0
