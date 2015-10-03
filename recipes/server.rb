@@ -15,19 +15,7 @@ _conf_dir = ::File.join(
 include_recipe 'runit'
 include_recipe 'java'
 include_recipe 'ark'
-
-group node['riemann']['system']['group'] do
-  action :create
-end
-
-user node['riemann']['system']['user'] do
-  action :create
-  home node['riemann']['system']['home_dir']
-  comment 'Riemann User'
-  system true
-  gid node['riemann']['system']['group']
-  shell '/bin/false'
-end
+include_recipe 'riemann2::default'
 
 ark 'riemann' do
   url "#{node['riemann']['download']['url']}riemann-#{node['riemann']['download']['version']}.tar.bz2"
