@@ -16,3 +16,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+group node['riemann']['system']['group'] do
+  action :create
+end
+
+user node['riemann']['system']['user'] do
+  action :create
+  home node['riemann']['system']['home_dir']
+  comment 'Riemann User'
+  system true
+  gid node['riemann']['system']['group']
+  shell '/bin/false'
+end
