@@ -23,3 +23,5 @@ template '/opt/riemann2/dash/config.rb' do
   group 'root'
   mode '0644'
 end
+
+runit_service 'riemann-dash'

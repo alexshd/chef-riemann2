@@ -1,0 +1,4 @@
+#!/bin/sh
+exec 2>&1
+cd /opt/riemann2/dash
+exec chpst -u <%= node['riemann']['system']['user'] %> /opt/chef/embedded/bin/riemann-dash  
