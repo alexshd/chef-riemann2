@@ -1,6 +1,6 @@
 # Description
 
-Installs/Configures riemann
+Installs/Configures riemann, riemann-dash and rienann-tools
 
 # Requirements
 
@@ -37,24 +37,68 @@ Installs/Configures riemann
 
 # Recipes
 
-* riemann2::dash
-* riemann2::default
-* riemann2::server
-* riemann2::tools
+* [riemann2::default](#riemann2default) - creating user and group, included in the `server` and `dash` recipes
+* [riemann2::server](#riemann2server) - installs riemann server, setting 2 config files => default ( riemann.conf ) and user.conf, for custumisations
+* [riemann2::dash](#riemann2dash) - install `riemann-dash` with `config.rb` and `config.json` from templates
+* [riemann2::tools](#riemann2tools) - installs `riemann-tools`
+
+## riemann2::default
+
+Configure user and group for riemann-servie and riemann-dash
+
+## riemann2::server
+
+Installs `riemann-server` with `/usr/local/riemann/etc/user.config` for manual changes to rieman-server.
+
+TODO:
+
+  - add temlate `riemann-chef.config` to include configuration from the cookbook.
+
+
+## riemann2::dash
+
+Installs `riemann-dash` with `config.rb` and `config.json`
+
+TODO:
+
+  - add dynamic variables to the config files
+
+## riemann2::tools
+
+Installs `riemann-tools`.
+
+Using the chef ruby
 
 # Resources
 
-* [riemann2_riemann_check](#riemann2_riemann_check)
+* [riemann2_check](#riemann2_check) - This creates and destroy the riemann-health service.
 
-## riemann2_riemann_check
+## riemann2_check
+
+This creates and destroy the riemann-health service.
 
 ### Actions
 
 - [:nothing]:  Default action.
+- create: Create the `riemann-health` service.
+- destroy: Destroy the `riemann-health` service.
 - nothing:
+- start:
+
+### Attribute Parameters
+
+- check_name:
+
+### Examples
+
+    # An example of my awesome service
+    riemann2::check "health" do
+      action :create
+    end
 
 # License and Maintainer
 
 Maintainer:: Alex Shadrin. (<alex@shdlabs.com>)
+Source:: https://github.com/alexshd/chef-riemann2.git
 
 License:: Apache 2.0

@@ -1,3 +1,11 @@
+=begin
+#<
+Installs `riemann-tools`. 
+
+Using the chef ruby
+#>
+=end
+
 include_recipe 'build-essential'
 include_recipe 'runit'
 
@@ -8,3 +16,6 @@ gem_package 'riemann-tools' do
   gem_binary 'gem'
 end
 
+riemann2_check 'health' do
+  action :create
+end

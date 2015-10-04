@@ -1,0 +1,6 @@
+#!/bin/sh
+exec 2>&1
+PATH=$PATH:/opt/chef/embedded/bin
+exec chpst -u<%= node.riemann.system.user %> \
+      riemann-health 
+                      

@@ -1,3 +1,19 @@
+#
+# Cookbook Name:: riemann2
+# Recipe::server  
+#
+=begin
+#<
+Installs `riemann-server` with `/usr/local/riemann/etc/user.config` for manual changes to rieman-server.
+
+
+TODO: 
+
+  - add temlate `riemann-chef.config` to include configuration from the cookbook.
+  
+#>
+=end
+
 case node[:platform_family]
 when 'debian'
   include_recipe 'apt'
@@ -20,7 +36,7 @@ include_recipe 'riemann2::default'
 ark 'riemann' do
   url "#{node['riemann']['download']['url']}riemann-#{node['riemann']['download']['version']}.tar.bz2"
   version node['riemann']['download']['version']
-  checksum  node['riemann']['download']['checksum']
+  checksum node['riemann']['download']['checksum']
   owner node['riemann']['system']['user']
   home_dir node['riemann']['system']['home_dir']
   action :install

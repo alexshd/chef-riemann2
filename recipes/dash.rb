@@ -2,10 +2,21 @@
 # Cookbook Name:: riemann2
 # Recipe::dash
 #
+=begin
+#<
+Installs `riemann-dash` with `config.rb` and `config.json`
+
+TODO: 
+
+  - add dynamic variables to the config files
+#>
+=end
+
 include_recipe 'runit'
 include_recipe 'riemann2::default'
 
 chef_gem 'riemann-dash' do
+  compile_time false
   action :install
 end
 
@@ -23,6 +34,7 @@ end
     owner node.riemann.system.user
     group node.riemann.system.group
     mode '0644'
+    action :create_if_missing
   end
 end
 
