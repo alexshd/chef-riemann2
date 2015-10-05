@@ -34,15 +34,18 @@ Installs/Configures riemann, riemann-dash and rienann-tools
 * `node['java']['jdk_version']` -  Defaults to `8`.
 * `node['java']['install_flavor']` -  Defaults to `oracle`.
 * `node['java']['oracle']['accept_oracle_download_terms']` -  Defaults to `true`.
+* `node['riemann']['server']['ip']` -  Defaults to ``.
+* `node['riemann']['server']['ip']` -  Defaults to ``.
+* `node['riemann']['server']['port']` -  Defaults to ``.
 
 # Recipes
 
-* [riemann2::default](#riemann2default) - creating user and group, included in the `server` and `dash` recipes
+* [riemann2::infra](#riemann2infra) - creating user and group, included in the `server` and `dash` recipes
 * [riemann2::server](#riemann2server) - installs riemann server, setting 2 config files => default ( riemann.conf ) and user.conf, for custumisations
 * [riemann2::dash](#riemann2dash) - install `riemann-dash` with `config.rb` and `config.json` from templates
 * [riemann2::tools](#riemann2tools) - installs `riemann-tools`
 
-## riemann2::default
+## riemann2::infra
 
 Configure user and group for riemann-servie and riemann-dash
 
@@ -88,12 +91,17 @@ This creates and destroy the riemann-health service.
 ### Attribute Parameters
 
 - check_name:
+- server:  Defaults to <code>"localhost"</code>.
+- port:  Defaults to <code>"5555"</code>.
+- tags:
 
 ### Examples
 
-    # An example of my awesome service
+    # riemann-health
     riemann2::check "health" do
       action :create
+      server node['riemann']['server']['ip']
+      port   '5555'
     end
 
 # License and Maintainer
