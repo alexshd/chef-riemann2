@@ -2,5 +2,6 @@
 exec 2>&1
 PATH=$PATH:/opt/chef/embedded/bin
 exec chpst -u<%= node.riemann.system.user %> \
-      riemann-health 
+      riemann-health -h <%= node['riemann']['server']['ip'] %> \
+      -p <%= node['riemann']['server']['port'] %>
                       

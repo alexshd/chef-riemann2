@@ -1,7 +1,8 @@
 #
 # Cookbook Name:: riemann2
-# Recipe::server  
+# Recipe:: server
 #
+# Copyright (c) 2015 The Authors, All Rights Reserved.
 =begin
 #<
 Installs `riemann-server` with `/usr/local/riemann/etc/user.config` for manual changes to rieman-server.
@@ -14,16 +15,17 @@ TODO:
 #>
 =end
 
-case node[:platform_family]
+case node['platform_family']
 when 'debian'
   include_recipe 'apt'
 when 'rhel'
   include_recipe 'yum'
 else
-  Chef::Application.fatal!('Platform Not Supported')
+  log 'Platform Not Supported'
+  exit 1
 end
 
-_conf_dir = ::File.join(
+conf_dir = ::File.join(
   node['riemann']['system']['home_dir'],
   'etc'
 )
@@ -31,7 +33,7 @@ _conf_dir = ::File.join(
 include_recipe 'runit'
 include_recipe 'java'
 include_recipe 'ark'
-include_recipe 'riemann2::default'
+include_recipe 'riemann2::infra'
 
 ark 'riemann' do
   url "#{node['riemann']['download']['url']}riemann-#{node['riemann']['download']['version']}.tar.bz2"
@@ -43,10 +45,10 @@ ark 'riemann' do
 end
 
 link '/etc/riemann' do
-  to _conf_dir
+  to conf_dir
 end
 
-template ::File.join(_conf_dir, 'riemann.config') do
+template ::File.join(conf_dir, 'riemann.config') do
   owner node['riemann']['system']['user']
   group node['riemann']['system']['group']
   source 'riemann.config.erb'
@@ -62,3 +64,6 @@ file node['riemann']['config']['userfile'] do
   action :create_if_missing
   mode '0644'
 end
+
+node.default['riemann']['server']['ip']   = node['ipaddress']
+node.default['riemann']['server']['port']  = node['riemann']['config']['port']
