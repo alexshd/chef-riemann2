@@ -82,11 +82,11 @@ This creates and destroy the riemann-health service.
 
 ### Actions
 
-- [:nothing]:  Default action.
+- [:create]:  Default action.
 - create: Create the `riemann-health` service.
 - destroy: Destroy the `riemann-health` service.
 - nothing:
-- start:
+- restart:
 
 ### Attribute Parameters
 
