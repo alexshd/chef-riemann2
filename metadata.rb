@@ -5,9 +5,9 @@ license          'Apache 2.0'
 description      'Installs/Configures riemann, riemann-dash and rienann-tools'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 source_url       'https://github.com/alexshd/chef-riemann2.git'
-version          '0.3.3'
+version          '0.3.5'
 
-recipe 'riemann2::default', "creating user and group, included in the `server` and `dash` recipes"
+recipe 'riemann2::infra', "creating user and group, included in the `server` and `dash` recipes"
 recipe 'riemann2::server',  "installs riemann server, setting 2 config files => default ( riemann.conf ) and user.conf, for custumisations"
 recipe 'riemann2::dash',    "install `riemann-dash` with `config.rb` and `config.json` from templates"
 recipe 'riemann2::tools',   "installs `riemann-tools`"
