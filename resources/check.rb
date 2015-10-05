@@ -16,7 +16,8 @@ This creates and destroy the riemann-health service.
 =end
 
 
-actions :create, :start, :destroy
+actions :create, :restart, :destroy
+default_action :create
 
 attribute :check_name, name_attribute: true,  kind_of: String
 attribute :server,     default: 'localhost',  kind_of: String, required: true
